@@ -1,3 +1,5 @@
+# Problem 2
+
 import numpy as np
 from scipy.stats import norm
 from scipy.optimize import brentq
