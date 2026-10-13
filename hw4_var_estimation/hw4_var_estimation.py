@@ -6,6 +6,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 
 from scipy.stats import norm
+from IPython.display import display
 
 tickers = ["MSFT", "AAPL", "GOOGL"]
 V = 1_000_000
@@ -27,10 +28,10 @@ prices = yf.download(
 prices = prices[tickers].dropna()
 
 print("First five observations:")
-print(prices.head())
+display(prices.head())
 
 print("Last five observations:")
-print(prices.tail())
+display(prices.tail())
 
 print("Total observations:", len(prices))
 
@@ -50,7 +51,7 @@ portfolio = pd.DataFrame({
     "Allocation (USD)": allocations
 }, index=tickers)
 
-print(portfolio)
+display(portfolio)
 
 
 # 3
@@ -68,7 +69,7 @@ var_emp = pd.Series({
     "Quadratic": np.quantile(L_quad, alpha)
 })
 
-print(var_emp.to_frame("Empirical VaR (USD)"))
+display(var_emp.to_frame("Empirical VaR (USD)"))
 
 plt.figure(figsize=(9, 5))
 
@@ -99,10 +100,10 @@ for x in X.to_numpy():
     mu = lam * mu + (1 - lam) * x
 
 print("EWMA Mean:")
-print(pd.Series(mu, index=tickers))
+display(pd.Series(mu, index=tickers))
 
 print("EWMA Covariance:")
-print(pd.DataFrame(Sigma, index=tickers, columns=tickers))
+display(pd.DataFrame(Sigma, index=tickers, columns=tickers))
 
 
 # 5
@@ -139,7 +140,7 @@ var_param = pd.Series({
     "Quadratic": var_quad_mc
 })
 
-print(var_param.to_frame("Parametric VaR (USD)"))
+display(var_param.to_frame("Parametric VaR (USD)"))
 
 
 # 6
@@ -154,7 +155,7 @@ comparison["Difference (%)"] = (
     (comparison["Parametric VaR"] / comparison["Empirical VaR"] - 1) * 100
 )
 
-print(comparison.round(2))
+display(comparison.round(2))
 
 comparison[["Empirical VaR", "Parametric VaR"]].plot(
     kind="bar",
