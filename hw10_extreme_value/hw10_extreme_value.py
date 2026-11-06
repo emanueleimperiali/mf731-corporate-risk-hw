@@ -4,8 +4,35 @@ import matplotlib.pyplot as plt
 import yfinance as yf
 from scipy.stats import norm, genextreme, genpareto
 
+# Parameters
 V = 1_000_000
 alphas = np.linspace(0.99, 0.9999, 100)
+
+# Download S&P 500 daily prices
+data = yf.download(
+    "^GSPC",
+    start="2011-11-01",
+    end="2022-01-01",
+    auto_adjust=False,
+    progress=False
+)
+
+# Select exactly 2556 closing prices
+prices = data["Close"].squeeze().dropna().iloc[:2556]
+
+# Compute 2555 daily log returns
+returns = np.log(prices / prices.shift(1)).dropna()
+
+# Linearized portfolio losses
+losses = -V * returns
+
+# Verify sample size
+print("Prices:", len(prices))
+print("Returns:", len(returns))
+print("First date:", prices.index[0].date())
+print("Last date:", prices.index[-1].date())
+
+assert len(returns) == 2555
 
 
 var_emp = np.quantile(
