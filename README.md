@@ -10,6 +10,7 @@ Codice per gli HW del corso di Corporate Risk Management.
 - `hw6_var_backtest/` - HW6 (backtest del VaR sull'S&P 500: empirico vs. normal-EWMA, test binomiale)
 - `hw7_scenario_analysis/` - HW7 (scenario analysis di un portafoglio delta-hedged su due azioni, scenari pesati)
 - `hw8_stress_testing/` - HW8 (stress test di un portafoglio MSFT/AAPL: shock a 5 deviazioni standard, VaR stressato con EWMA e Monte Carlo)
+- `hw10_extreme_value/` - HW10 (VaR estremo sull'S&P 500: empirico, normal-EWMA, GEV block maxima, GP peaks-over-threshold)
 
 Ogni cartella contiene lo script `.py` e lo stesso codice come notebook `.ipynb`.
 
@@ -25,6 +26,7 @@ python hw5_var_10days/hw5_var_10days.py
 python hw6_var_backtest/hw6_var_backtest.py
 python hw7_scenario_analysis/hw7_scenario_analysis.py
 python hw8_stress_testing/hw8_stress_testing.py
+python hw10_extreme_value/hw10_extreme_value.py
 ```
 
-HW2, HW4, HW6 e HW8 scaricano i dati da Yahoo Finance, quindi serve una connessione internet.
+HW2, HW4, HW6, HW8 e HW10 scaricano i dati da Yahoo Finance, quindi serve una connessione internet.
